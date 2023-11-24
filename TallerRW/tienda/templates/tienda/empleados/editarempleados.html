@@ -1,0 +1,26 @@
+{% extends 'tienda/base.html' %}
+{% load static %}
+
+{% block titulo %}Editar Empleado{% endblock %}
+
+{% block contenedor %}
+
+    <h1 class="titul">Actualizar empleado ({{ data.id }})</h1>
+    <form class= "p-5"action="{% url 'empleado_actualizar' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ data.id }}">
+        <label class="form-control">Nombre</label>
+        <input class="form-control" type="text" name="nombre" value="{{ data.nombre_completo }}" /><br>
+        <label class="form-control">cedula</label>
+        <input class="form-control" type="text" name="cedula" value="{{ data.cedula }}" /><br>
+        <label class="form-control">correo</label>
+        <input class="form-control" type="text" name="correo" value="{{ data.correo }}" /><br>
+        <label class="form-control">telefono</label>
+        <input class="form-control" type="text" name="telefono" value="{{ data.telefono }}" /><br>
+        <label class="form-control">Cargo</label>
+        <input class="form-control" type="text" name="cargo" value="{{ data.cargo }}" /><br>
+        
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    </form>
+
+{% endblock %}

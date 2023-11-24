@@ -1,0 +1,50 @@
+{% extends 'tienda/base.html' %}
+{% load static %}
+
+{% block titulo %}Editar Productos{% endblock %}
+
+{% block contenedor %}
+
+<h1 class="titul">Editar Producto ID: ({{ data.id }})</h1>
+<div class="container-fluid center ">
+    <form action="{% url 'actualizarProductos'%}" method="post">
+        {% csrf_token %}
+        <input type="number" hidden name="id" value="{{ data.id }}">
+        <div class="col-6">
+            <label class="form-control">Nombre</label>
+            <input class="form-control" type="text" name="nombre" value="{{ data.nombre }}" /><br>
+        </div>
+        <div class="col-6">
+            <label class="form-control">Precio</label>
+            <input class="form-control" type="number" name="precio" value="{{ data.Precio }}" /><br>
+        </div>
+        <div class="col-6"></div>
+            <label class="form-control">Descripcion</label>
+            <input class="form-control" type="text" name="descripcion" value="{{ data.descripcion_producto }}" /><br>
+        </div>
+        <div class="col-6"></div>
+            <label class="form-control">Cantidad</label>
+            <input class="form-control" type="text" name="cantidad" value="{{ data.cantidad }}" /><br>
+        </div>
+        <div class="col-6"></div>
+            <label class="form-control">Fecha de Creación</label>
+            <input class="form-control" type="date" name="fecha_creacion" value="{{ data.fecha_Creacion|date:'Y-m-d' }}" /><br>
+        </div>
+        <div class="col-6">
+            <label class="form-control">Categoria</label>
+        <div class="col-6">
+            <select class="form-control" name="categoria">
+                <option value="">Seleccione</option>
+                {% for c in categoria %}
+                    <option value="{{ c.id }}" {% if data.categoria.id == c.id %}selected{% endif %}>{{ c.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+</div>
+<div class="container-fluid mp-5">
+    <button type="submit" class="btn btn-success">Actualizar</button>
+</div>
+</form>
+
+{% endblock %}
